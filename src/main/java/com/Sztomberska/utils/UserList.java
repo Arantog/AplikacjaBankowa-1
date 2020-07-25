@@ -33,4 +33,10 @@ public class UserList {
     }
     return checkUser;
   }
+
+  public void addAll(User[] users) {
+    for (User user : users) {
+      addUser(user);
+    }
+  }
 }

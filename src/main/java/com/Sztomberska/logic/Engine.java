@@ -3,26 +3,26 @@ package com.Sztomberska.logic;
 import com.Sztomberska.model.Account;
 import com.Sztomberska.model.User;
 
-import com.Sztomberska.utils.UserList;
+import com.Sztomberska.utils.IntelligentList;
 import java.util.Scanner;
 
 public class Engine {
 
-    private UserList userList = new UserList();
+    private final IntelligentList<User> inteligentList = new IntelligentList<>(User.class);
 
 
     public void start() {
         System.out.println("Witamy w banku. Podaj swój login: ");
         Scanner scanner = new Scanner(System.in);
-        NumberGenerator generator = new NumberGenerator(userList.getAll());
+        NumberGenerator generator = new NumberGenerator(inteligentList);
         String login = scanner.next();
 
-        User checkUser = userList.findUser(login);
-        if (checkUser == null) {
-            System.out.println("Konto zostało utworzone.");
-            User newUser = createUser(generator, login);
-            addUser(newUser);
-        }
+//        User checkUser = inteligentList.find(login);
+//        if (checkUser == null) {
+//            System.out.println("Konto zostało utworzone.");
+//            User newUser = createUser(generator, login);
+//            addUser(newUser);
+//        }
     }
 
     private User createUser(NumberGenerator generator, String login) {
@@ -34,7 +34,7 @@ public class Engine {
     }
 
     private void addUser(User newUser) {
-       userList.addUser(newUser);
+       inteligentList.add(newUser);
     }
 
     private Account createAccount(NumberGenerator generator) {
@@ -46,7 +46,7 @@ public class Engine {
 
 
     public void printUsers() {
-        for (User user : userList.getAll()) {
+        for (User user : inteligentList.getAll()) {
             System.out.println(user);
         }
 
